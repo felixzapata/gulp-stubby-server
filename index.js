@@ -63,13 +63,6 @@ function isPathAbsolute() {
     return path.resolve(filepath) === filepath.replace(/[\/\\]+$/, '');
 }
 
-function getAbsolutePath(filepath) {
-    if (isPathAbsolute(filepath)) {
-        filepath = process.cwd() + '/' + filepath;
-    }
-    return filepath;
-}
-
 
 function readYAML(filepath, options) {
     var src = fs.readFileSync(filepath, options);
