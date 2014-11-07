@@ -38,7 +38,7 @@ gulp.task('stubby', function() {
 });
 
 gulp.task('nodeunit', function() {
-    gulp.src('test/*Test.js').pipe(nodeunit());
+    gulp.src('test/test.js').pipe(nodeunit());
 });
 
 gulp.task('clean', function() {
