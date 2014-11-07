@@ -10,7 +10,7 @@
 
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
-    stubby = require('./index'),
+    stubby = require('./index.js'),
     clean = require('gulp-clean'),
     nodeunit = require('gulp-nodeunit');
 
