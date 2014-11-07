@@ -41,12 +41,7 @@ gulp.task('nodeunit', function() {
     gulp.src('test/test.js').pipe(nodeunit());
 });
 
-gulp.task('clean', function() {
-    return gulp.src('tmp', {
-        read: false
-    }).pipe(clean());
-});
 
-gulp.task('test', ['clean', 'stubby', 'nodeunit']);
+gulp.task('test', ['stubby', 'nodeunit']);
 
 gulp.task('default', ['jshint', 'test']);
