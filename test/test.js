@@ -5,18 +5,8 @@ var plugin = require(pluginPath);
 var gulp = require('gulp');
 var request = require('supertest');
 
-gulp.task('stubby', function() {
-    var options = {
-        stubs: 8000,
-        tls: 8443,
-        admin: 8001
-    };
-    return gulp.src('test/fixtures/*.{json,yaml,js}')
-        .pipe(stubby(options));
-});
-
 exports.stubby = {
-    'Test Places endpoint': function(test) {
+    '1) Test Places endpoint': function(test) {
         test.expect(1);
         request('http://localhost:8000')
             .get('/path/to/thing?a=anything&b=more')
@@ -31,7 +21,7 @@ exports.stubby = {
                 test.done();
             });
     },
-    'Test Users endpoint': function(test) {
+    '2) Test Users endpoint': function(test) {
         test.expect(1);
         request('http://localhost:8000')
             .post('/path/to/users')
@@ -49,7 +39,7 @@ exports.stubby = {
                 test.done();
             });
     },
-    'Test Localities endpoint': function(test) {
+    '3) Test Localities endpoint': function(test) {
         test.expect(1);
         request('http://localhost:8000')
             .post('/localities/istambul?exclamation=post requests can have query strings!')
@@ -66,7 +56,7 @@ exports.stubby = {
                 test.done();
             });
     },
-    'Test Towns endpoint': function(test) {
+    '4) Test Towns endpoint': function(test) {
         test.expect(1);
         request('http://localhost:8000')
             .get('/towns')
