@@ -17,12 +17,12 @@ var gulp = require('gulp'),
 
 gulp.task('jshint', function() {
     var options = {
-        jshintrc: '.jshintrc',
+        jshintrc: '.jshintrc'
     };
     return gulp.src([
             'gulpfile.js',
             'tasks/*.js',
-            '<%= nodeunit.tests %>',
+            '<%= nodeunit.tests %>'
         ])
         .pipe(jshint(options));
 });
