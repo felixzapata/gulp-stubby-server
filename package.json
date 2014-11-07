@@ -26,20 +26,18 @@
   },
   "homepage": "https://github.com/felixzapata/gulp-stubby/issues",
   "devDependencies": {
-    "chai": "~1.9.1",
-    "gulp": "^3.8.10",
     "gulp-clean": "^0.3.1",
     "gulp-jshint": "^1.9.0",
     "gulp-nodeunit": "0.0.5",
     "supertest": "~0.7.1"
   },
   "dependencies": {
+    "gulp": "^3.8.10",
     "lodash": "^2.4.1",
     "event-stream": "^3.1.7",
     "gulp-util": "^3.0.0",
     "stubby": "~0.2.0",
-    "js-yaml": "^3.2.2",
-    "through2": "^0.6.0",
-    "vinyl-fs": "^0.3.6"
+    "vinyl-fs": "^0.3.6",
+    "js-yaml": "~3.2.2"
   }
 }
