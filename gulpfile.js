@@ -15,15 +15,13 @@ var gulp = require('gulp'),
 
 
 gulp.task('jshint', function() {
-    var options = {
-        jshintrc: '.jshintrc'
-    };
-    return gulp.src([
-            'gulpfile.js',
-            'tasks/*.js',
-            '<%= nodeunit.tests %>'
+    gulp.src([
+            '!gulpfile.js',
+            '!test/*.js',
+            'index.js'
         ])
-        .pipe(jshint(options));
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter());
 });
 
 gulp.task('stubby', function() {

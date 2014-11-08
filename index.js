@@ -6,6 +6,7 @@
  * Licensed under the MIT license.
  */
 
+
 'use strict';
 
 var _ = require('lodash'),
@@ -21,6 +22,11 @@ var _ = require('lodash'),
 // defines the absolute path for external static request/response
 // files that will be processed internally by Stubby
 
+function isPathAbsolute() {
+    var filepath = path.join.apply(path, arguments);
+    return path.resolve(filepath) === filepath.replace(/[\/\\]+$/, '');
+}
+
 function setPathStaticFiles(array, filepath) {
     filepath = path.dirname(filepath);
 
@@ -30,7 +36,7 @@ function setPathStaticFiles(array, filepath) {
         return filepath + '/' + file;
     }
 
-    array = array.map(function (object) {
+    array = array.map(function(object) {
         if (_.isObject(object.request) && object.request.file) {
             if (!isPathAbsolute(object.request.file)) {
                 object.request.file = setAbsoluteFilePath(object.request.file);
@@ -39,7 +45,7 @@ function setPathStaticFiles(array, filepath) {
         if (_.isObject(object.response)) {
             // support collections for responses
             if (_.isArray(object.response)) {
-                object.response = object.response.map(function (response) {
+                object.response = object.response.map(function(response) {
                     if (response.file && !isPathAbsolute(response.file)) {
                         response.file = setAbsoluteFilePath(response.file);
                     }
@@ -58,16 +64,12 @@ function setPathStaticFiles(array, filepath) {
     return array;
 }
 
-function isPathAbsolute() {
-    var filepath = path.join.apply(path, arguments);
-    return path.resolve(filepath) === filepath.replace(/[\/\\]+$/, '');
-}
+
 
 
 function readYAML(filepath, options) {
     var src = fs.readFileSync(filepath, options);
     var result;
-    gutil.log('Parsing ' + filepath + '...');
     try {
         result = YAML.load(src);
         return result;
@@ -79,7 +81,6 @@ function readYAML(filepath, options) {
 function readJSON(filepath, options) {
     var src = fs.readFileSync(filepath, options);
     var result;
-    gutil.log('Parsing ' + filepath + '...');
     try {
         result = JSON.parse(src);
         return result;
@@ -93,20 +94,21 @@ function stubbyPlugin(customOptions) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var defaultOptions = {
-        callback: null, // takes one parameter: the error message (if there is one), undefined otherwise
-        stubs: 8882, // port number to run the stubs portal
-        admin: 8889, // port number to run the admin portal
-        tls: 7443, // port number to run the stubs portal over https
-        data: null, // JavaScript Object/Array containing endpoint data
-        location: 'localhost', // address/hostname at which to run stubby
-        key: null, // keyfile contents (in PEM format)
-        cert: null, // certificate file contents (in PEM format)
-        pfx: null, // pfx file contents (mutually exclusive with key/cert options)
-        watch: null, // filename to monitor and load as stubby's data when changes occur
-        mute: true, // defaults to true. Pass in false to have console output (if available)
-        relativeFilesPath: false, // if enabled, obtains the data mock file path relatively to the config file directory
-        persistent: false // Run the task in a persistent server mode. Other tasks not will run until the Stubby server stops
-    }, options = customOptions ? _.assign(defaultOptions, customOptions) : defaultOptions,
+            callback: null, // takes one parameter: the error message (if there is one), undefined otherwise
+            stubs: 8882, // port number to run the stubs portal
+            admin: 8889, // port number to run the admin portal
+            tls: 7443, // port number to run the stubs portal over https
+            data: null, // JavaScript Object/Array containing endpoint data
+            location: 'localhost', // address/hostname at which to run stubby
+            key: null, // keyfile contents (in PEM format)
+            cert: null, // certificate file contents (in PEM format)
+            pfx: null, // pfx file contents (mutually exclusive with key/cert options)
+            watch: null, // filename to monitor and load as stubby's data when changes occur
+            mute: true, // defaults to true. Pass in false to have console output (if available)
+            relativeFilesPath: false, // if enabled, obtains the data mock file path relatively to the config file directory
+            persistent: false // Run the task in a persistent server mode. Other tasks not will run until the Stubby server stops
+        },
+        options = customOptions ? _.assign(defaultOptions, customOptions) : defaultOptions,
         child,
         stream,
         files = [];
@@ -114,7 +116,7 @@ function stubbyPlugin(customOptions) {
 
     function processDataForStubby() {
         // Iterate over all specified file groups.
-        var data = _.union.apply(_, options.files.map(function (filepath) {
+        var data = _.union.apply(_, options.files.map(function(filepath) {
             // Concat specified files.
             var data;
             // Read file source.
@@ -155,7 +157,7 @@ function stubbyPlugin(customOptions) {
 
         var stubbyServer = new Stubby();
 
-        stubbyServer.start(_.omit(options, 'callback', 'relativeFilesPath', 'persistent'), function (error) {
+        stubbyServer.start(_.omit(options, 'callback', 'relativeFilesPath', 'persistent'), function(error) {
             if (error) {
                 gutil.log('Stubby error: "' + error);
                 done(1);
