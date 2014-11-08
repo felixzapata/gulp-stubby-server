@@ -11,7 +11,6 @@
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     stubby = require('./index.js'),
-    clean = require('gulp-clean'),
     nodeunit = require('gulp-nodeunit');
 
 
@@ -33,7 +32,7 @@ gulp.task('stubby', function() {
         tls: 8443,
         admin: 8001
     };
-    return gulp.src('test/fixtures/*.{json,yaml,js}')
+    gulp.src('test/fixtures/*.{json,yaml,js}')
         .pipe(stubby(options));
 });
 
