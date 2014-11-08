@@ -1,44 +1,44 @@
 {
-    "name": "gulp-stubby",
-    "version": "0.0.1",
-    "description": "A Gulp plugin for setting up a Stubby mock server based on YAML/JSON/JS configuration files",
-    "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/felixzapata/gulp-stubby"
-    },
-    "keywords": [
-        "gulpplugin",
-        "stubby",
-        "mock",
-        "server",
-        "stubs",
-        "task"
-    ],
-    "author": {
-        "name": "Félix Zapata",
-        "url": "http://www.linkedin.com/in/felixzapata"
-    },
-    "scripts": {
-        "test": "gulp test"
-    },
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/felixzapata/gulp-stubby/issues"
-    },
-    "homepage": "https://github.com/felixzapata/gulp-stubby/issues",
-    "devDependencies": {
-        "gulp-jshint": "^1.9.0",
-        "gulp-nodeunit": "0.0.5",
-        "supertest": "~0.7.1"
-    },
-    "dependencies": {
-        "gulp": "^3.8.10",
-        "lodash": "^2.4.1",
-        "event-stream": "^3.1.7",
-        "gulp-util": "^3.0.0",
-        "stubby": "~0.2.0",
-        "vinyl-fs": "^0.3.6",
-        "js-yaml": "~3.2.2"
-    }
+  "name": "gulp-stubby",
+  "version": "0.0.1",
+  "description": "A Gulp plugin for setting up a Stubby mock server based on YAML/JSON/JS configuration files",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/felixzapata/gulp-stubby"
+  },
+  "keywords": [
+    "gulpplugin",
+    "stubby",
+    "mock",
+    "server",
+    "stubs",
+    "task"
+  ],
+  "author": {
+    "name": "Félix Zapata",
+    "url": "http://www.linkedin.com/in/felixzapata"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/felixzapata/gulp-stubby/issues"
+  },
+  "homepage": "https://github.com/felixzapata/gulp-stubby/issues",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-jshint": "^1.9.0",
+    "gulp-nodeunit": "0.0.5",
+    "gulp-util": "^3.0.1",
+    "supertest": "~0.7.1"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "event-stream": "^3.1.7",
+    "stubby": "~0.2.0",
+    "vinyl-fs": "^0.3.6",
+    "js-yaml": "~3.2.2"
+  }
 }
