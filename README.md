@@ -1,6 +1,6 @@
 # Gulp Stubby
 
-[![Build Status](https://travis-ci.org/felixzapata/grunt-stubby.png)](https://travis-ci.org/felixzapata/gulp-stubby)
+[![Build Status](https://travis-ci.org/felixzapata/gulp-stubby.png)](https://travis-ci.org/felixzapata/gulp-stubby)
 
 > A Gult plugin for setting up a [Stubby](https://github.com/mrak/stubby4node) mock server based on YAML/JSON/JS configuration files.
 
