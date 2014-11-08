@@ -29,7 +29,6 @@
     },
     "homepage": "https://github.com/felixzapata/gulp-stubby/issues",
     "devDependencies": {
-        "gulp-clean": "^0.3.1",
         "gulp-jshint": "^1.9.0",
         "gulp-nodeunit": "0.0.5",
         "supertest": "~0.7.1"
