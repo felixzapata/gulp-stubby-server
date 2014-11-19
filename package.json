@@ -32,7 +32,8 @@
     "gulp-jshint": "^1.9.0",
     "gulp-nodeunit": "0.0.5",
     "gulp-util": "^3.0.1",
-    "supertest": "~0.7.1"
+    "supertest": "~0.7.1",
+    "glob": "~4.1.5"
   },
   "dependencies": {
     "lodash": "^2.4.1",
