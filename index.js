@@ -6,12 +6,11 @@
  * Licensed under the MIT license.
  */
 
-
 'use strict';
 
 var _ = require('lodash'),
     fs = require('fs'),
-    es = require('event-stream'),
+    glob = require('glob'),
     gutil = require('gulp-util'),
     Stubby = require('stubby').Stubby,
     path = require('path'),
@@ -22,11 +21,6 @@ var _ = require('lodash'),
 // defines the absolute path for external static request/response
 // files that will be processed internally by Stubby
 
-function isPathAbsolute() {
-    var filepath = path.join.apply(path, arguments);
-    return path.resolve(filepath) === filepath.replace(/[\/\\]+$/, '');
-}
-
 function setPathStaticFiles(array, filepath) {
     filepath = path.dirname(filepath);
 
@@ -36,7 +30,7 @@ function setPathStaticFiles(array, filepath) {
         return filepath + '/' + file;
     }
 
-    array = array.map(function(object) {
+    array = array.map(function (object) {
         if (_.isObject(object.request) && object.request.file) {
             if (!isPathAbsolute(object.request.file)) {
                 object.request.file = setAbsoluteFilePath(object.request.file);
@@ -45,7 +39,7 @@ function setPathStaticFiles(array, filepath) {
         if (_.isObject(object.response)) {
             // support collections for responses
             if (_.isArray(object.response)) {
-                object.response = object.response.map(function(response) {
+                object.response = object.response.map(function (response) {
                     if (response.file && !isPathAbsolute(response.file)) {
                         response.file = setAbsoluteFilePath(response.file);
                     }
@@ -64,12 +58,16 @@ function setPathStaticFiles(array, filepath) {
     return array;
 }
 
-
-
+function isPathAbsolute() {
+    var filepath = path.join.apply(path, arguments);
+    return path.resolve(filepath) === filepath.replace(/[\/\\]+$/, '');
+}
 
 function readYAML(filepath, options) {
-    var src = fs.readFileSync(filepath, options);
-    var result;
+    var src = fs.readFileSync(filepath, options),result;
+    if(!options.mute){
+        gutil.log(gutil.colors.yellow('Parsing ' + filepath + '...'));
+    }
     try {
         result = YAML.load(src);
         return result;
@@ -79,8 +77,11 @@ function readYAML(filepath, options) {
 }
 
 function readJSON(filepath, options) {
-    var src = fs.readFileSync(filepath, options);
-    var result;
+    var src = fs.readFileSync(filepath, options),
+    result;
+    if(!options.mute){
+        gutil.log(gutil.colors.yellow('Parsing ' + filepath + '...'));
+    }
     try {
         result = JSON.parse(src);
         return result;
@@ -89,58 +90,68 @@ function readJSON(filepath, options) {
     }
 }
 
-function stubbyPlugin(customOptions) {
+
+function getAbsolutePath(filepath) {
+    if (!isPathAbsolute(filepath)) {
+        filepath = process.cwd() + '/' + filepath;
+    }
+    return filepath;
+}
+
+function stubbyPlugin(customOptions, cb) {
 
 
     // Merge task-specific and/or target-specific options with these defaults.
     var defaultOptions = {
-            callback: null, // takes one parameter: the error message (if there is one), undefined otherwise
-            stubs: 8882, // port number to run the stubs portal
-            admin: 8889, // port number to run the admin portal
-            tls: 7443, // port number to run the stubs portal over https
-            data: null, // JavaScript Object/Array containing endpoint data
-            location: 'localhost', // address/hostname at which to run stubby
-            key: null, // keyfile contents (in PEM format)
-            cert: null, // certificate file contents (in PEM format)
-            pfx: null, // pfx file contents (mutually exclusive with key/cert options)
-            watch: null, // filename to monitor and load as stubby's data when changes occur
-            mute: true, // defaults to true. Pass in false to have console output (if available)
-            relativeFilesPath: false, // if enabled, obtains the data mock file path relatively to the config file directory
-            persistent: false // Run the task in a persistent server mode. Other tasks not will run until the Stubby server stops
-        },
-        options = customOptions ? _.assign(defaultOptions, customOptions) : defaultOptions,
-        child,
-        stream,
-        files = [];
+        callback: null, // takes one parameter: the error message (if there is one), undefined otherwise
+        stubs: 8882, // port number to run the stubs portal
+        admin: 8889, // port number to run the admin portal
+        tls: 7443, // port number to run the stubs portal over https
+        data: null, // JavaScript Object/Array containing endpoint data
+        location: 'localhost', // address/hostname at which to run stubby
+        key: null, // keyfile contents (in PEM format)
+        cert: null, // certificate file contents (in PEM format)
+        pfx: null, // pfx file contents (mutually exclusive with key/cert options)
+        watch: null, // filename to monitor and load as stubby's data when changes occur
+        mute: true, // defaults to true. Pass in false to have console output (if available)
+        relativeFilesPath: false, // if enabled, obtains the data mock file path relatively to the config file directory
+        persistent: false // Run the task in a persistent server mode. Other tasks not will run until the Stubby server stops
+    }, options = customOptions ? _.assign(defaultOptions, customOptions) : defaultOptions,
+        stubbyServer = new Stubby(),
+        data, files;
 
 
-    function processDataForStubby() {
+    if (options.files) {
+        files = glob.sync(_.first(options.files));
         // Iterate over all specified file groups.
-        var data = _.union.apply(_, options.files.map(function(filepath) {
-            // Concat specified files.
+        data = _.union.apply(_, files.filter(function (filepath) {
+            // Warn on and remove invalid source files (if nonull was set).
+            if (!fs.existsSync(filepath)) {
+                gutil.log(gutil.colors.red('Source file "' + filepath + '" not found.'));
+                return false;
+            }
+            return true;
+        }).map(function (filepath) {
             var data;
+            filepath = getAbsolutePath(filepath);
             // Read file source.
             if (/.yaml$/g.test(filepath)) {
-                data = readYAML(filepath);
+                data = readYAML(filepath, options);
             } else if (/.js$/g.test(filepath)) {
                 try {
                     data = require(filepath);
                 } catch (e) {
-                    throw new gutil.PluginError(PLUGIN_NAME, 'Error while parsing JS file "' + filepath + '"', e);
+                    gutil.log(gutil.colors.red('Error while parsing JS file "' + filepath + '"', 1));
                 }
             } else {
-                data = readJSON(filepath);
+                data = readJSON(filepath, options);
             }
 
             if (!_.isArray(data)) {
                 data = [data];
             }
-
             return options.relativeFilesPath ? setPathStaticFiles(data, filepath) : data;
-
         }));
-
-
 
         if (_.isObject(options.data)) {
             if (_.isArray(options.data)) {
@@ -151,70 +162,27 @@ function stubbyPlugin(customOptions) {
         } else {
             options.data = data;
         }
-    }
 
-    function startStubby() {
-
-        var stubbyServer = new Stubby();
-
-        stubbyServer.start(_.omit(options, 'callback', 'relativeFilesPath', 'persistent'), function(error) {
+        stubbyServer.start(_.omit(options, 'callback', 'relativeFilesPath', 'persistent'), function (error) {
             if (error) {
-                gutil.log('Stubby error: "' + error);
-                done(1);
-                return;
+                gutil.log(gutil.colors.red('Stubby error: "' + error));
+                cb();
             }
-
             if (_.isFunction(options.callback)) {
                 options.callback(stubbyServer, options);
             }
 
-            gutil.log('Stubby HTTP server listening on port ' + options.stubs);
-            gutil.log('Stubby HTTPS server listening on port ' + options.tls);
-            gutil.log('Admin server listening on port ' + options.admin);
+            gutil.log(gutil.colors.green('Stubby HTTP server listening on port ' + options.stubs));
+            gutil.log(gutil.colors.green('Stubby HTTPS server listening on port ' + options.tls));
+            gutil.log(gutil.colors.green('Admin server listening on port ' + options.admin));
 
             if (!options.persistent) {
-                done();
+                cb();
             }
 
         });
     }
 
-    function done(code) {
-        // Stop the server if it's running
-        if (child) {
-            child.kill();
-        }
-        // End the stream if it exists
-        if (stream) {
-            if (code) {
-                stream.emit('error', new gutil.PluginError(PLUGIN_NAME, 'stubby exited with code ' + code));
-            } else {
-                stream.emit('end');
-            }
-        }
-    }
-
-
-    function queueFile(file) {
-        if (file) {
-            files.push(file.path);
-        } else {
-            stream.emit('error', new Error('Got undefined file'));
-        }
-    }
-
-    function endStream() {
-
-        if (files.length) {
-            options.files = files;
-        }
-        processDataForStubby();
-        startStubby();
-    }
-
-    stream = es.through(queueFile, endStream);
-    return stream;
 }
-
 
 module.exports = stubbyPlugin;

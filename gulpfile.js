@@ -11,34 +11,42 @@
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     stubby = require('./index.js'),
+    clean = require('gulp-clean'),
     nodeunit = require('gulp-nodeunit');
 
 
-gulp.task('jshint', function() {
-    gulp.src([
-            '!gulpfile.js',
-            '!test/*.js',
-            'index.js'
-        ])
-        .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter());
+gulp.task('jshint', function () {
+    var options = {
+        jshintrc: '.jshintrc'
+    };
+    return gulp.src([
+        'gulpfile.js',
+        'tasks/*.js',
+        '<%= nodeunit.tests %>'
+    ])
+        .pipe(jshint(options));
 });
 
-gulp.task('stubby', function() {
+gulp.task('stubby', function (cb) {
     var options = {
         stubs: 8000,
         tls: 8443,
-        admin: 8001
+        admin: 8001,
+        persistent: false,
+        files: [
+            'test/fixtures/*.{json,yaml,js}'
+        ]
     };
-    gulp.src('test/fixtures/*.{json,yaml,js}')
-        .pipe(stubby(options));
-});
-
-gulp.task('nodeunit', function() {
-    gulp.src('test/test.js').pipe(nodeunit());
+    return stubby(options, cb);
 });
 
 
-gulp.task('test', ['stubby', 'nodeunit']);
+gulp.task('nodeunit', ['stubby'], function () {
+    return gulp.src('test/test.js').pipe(nodeunit()).on('end', function () {
+        process.nextTick(function () {
+            process.exit(0);
+        });
+    });
+});
 
-gulp.task('default', ['jshint', 'test']);
+gulp.task('default', ['stubby', 'jshint']);
