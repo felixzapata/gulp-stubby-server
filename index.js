@@ -78,7 +78,7 @@ function readYAML(filepath, options) {
 
 function readJSON(filepath, options) {
     var src = fs.readFileSync(filepath, options),
-    result;
+    result; 
     if(!options.mute){
         gutil.log(gutil.colors.yellow('Parsing ' + filepath + '...'));
     }
