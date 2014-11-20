@@ -20,7 +20,7 @@
     "url": "http://www.linkedin.com/in/felixzapata"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp nodeunit"
   },
   "license": "MIT",
   "bugs": {
