@@ -49,4 +49,4 @@ gulp.task('nodeunit', ['stubby'], function () {
     });
 });
 
-gulp.task('default', ['stubby', 'jshint']);
+
