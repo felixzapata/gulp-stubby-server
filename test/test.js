@@ -1,9 +1,8 @@
 'use strict';
 
-var pluginPath = '../index';
-var plugin = require(pluginPath);
-var gulp = require('gulp');
-var request = require('supertest');
+var pluginPath = '../index',
+    plugin = require(pluginPath),
+    request = require('supertest');
 
 exports.stubby = {
     '1) Test Places endpoint': function(test) {
@@ -52,7 +51,7 @@ exports.stubby = {
                 if (err) {
                     return test.done(err);
                 }
-                test.equal(res.text, '<!xml blah="blah blah blah"> <responseXML>\n   <content></content>\n</responseXML>');
+                test.equal(res.text.replace(/^\s+|\s+$/g, ""), '<!xml blah="blah blah blah"> <responseXML>\n   <content></content>\n</responseXML>');
                 test.done();
             });
     },
