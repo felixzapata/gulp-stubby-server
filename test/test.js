@@ -5,14 +5,14 @@ var pluginPath = '../index',
     request = require('supertest');
 
 exports.stubby = {
-    '1) Test Places endpoint': function(test) {
+    '1) Test Places endpoint': function (test) {
         test.expect(1);
         request('http://localhost:8000')
             .get('/path/to/thing?a=anything&b=more')
             .set('Content-Type', 'application/json')
             .expect('Content-Type', 'application/json')
             .expect(200)
-            .end(function(err, res) {
+            .end(function (err, res) {
                 if (err) {
                     return test.done(err);
                 }
@@ -20,7 +20,7 @@ exports.stubby = {
                 test.done();
             });
     },
-    '2) Test Users endpoint': function(test) {
+    '2) Test Users endpoint': function (test) {
         test.expect(1);
         request('http://localhost:8000')
             .post('/path/to/users')
@@ -28,7 +28,7 @@ exports.stubby = {
             .send('test body data')
             .expect('Content-Type', 'application/json')
             .expect(200)
-            .end(function(err, res) {
+            .end(function (err, res) {
                 if (err) {
                     return test.done(err);
                 }
@@ -38,7 +38,7 @@ exports.stubby = {
                 test.done();
             });
     },
-    '3) Test Localities endpoint': function(test) {
+    '3) Test Localities endpoint': function (test) {
         test.expect(1);
         request('http://localhost:8000')
             .post('/localities/istambul?exclamation=post requests can have query strings!')
@@ -47,7 +47,7 @@ exports.stubby = {
             .expect(200)
             .expect('Content-Type', 'application/xml')
             .expect('X-API', '1.0')
-            .end(function(err, res) {
+            .end(function (err, res) {
                 if (err) {
                     return test.done(err);
                 }
@@ -55,7 +55,7 @@ exports.stubby = {
                 test.done();
             });
     },
-    '4) Test Towns endpoint': function(test) {
+    '4) Test Towns endpoint': function (test) {
         test.expect(1);
         request('http://localhost:8000')
             .get('/towns')
@@ -63,7 +63,7 @@ exports.stubby = {
             .expect(200)
             .expect('Content-Type', 'application/json')
             .expect('Access-Control-Allow-Origin', '*')
-            .end(function(err, res) {
+            .end(function (err, res) {
                 if (err) {
                     return test.done(err);
                 }

@@ -64,8 +64,9 @@ function isPathAbsolute() {
 }
 
 function readYAML(filepath, options) {
-    var src = fs.readFileSync(filepath, options),result;
-    if(!options.mute){
+    var src = fs.readFileSync(filepath, options),
+        result;
+    if (!options.mute) {
         gutil.log(gutil.colors.yellow('Parsing ' + filepath + '...'));
     }
     try {
@@ -78,8 +79,8 @@ function readYAML(filepath, options) {
 
 function readJSON(filepath, options) {
     var src = fs.readFileSync(filepath, options),
-    result; 
-    if(!options.mute){
+        result;
+    if (!options.mute) {
         gutil.log(gutil.colors.yellow('Parsing ' + filepath + '...'));
     }
     try {
