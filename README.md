@@ -19,9 +19,13 @@ npm install gulp-stubby --save-dev
 #### Default Options
 
 ```js
-gulp.task('stubby', function() {
-    gulp.src('mocks/*.{json,yaml,js}')
-        .pipe(stubby());
+gulp.task('stubby', function(cb) {
+    var options = {
+        files: [
+            'mocks/*.{json,yaml,js}'
+        ]
+    }; 
+    stubby(options, cb);
 });
 ```
 
@@ -38,10 +42,12 @@ gulp.task('stubby', function() {
         },
         stubs: 8000,
         tls: 8443,
-        admin: 8010
+        admin: 8010,
+        files: [
+            'mocks/*.{json,yaml,js}'
+        ]
       },
-    gulp.src('mocks/*.{json,yaml,js}')
-        .pipe(stubby(options));
+    stubby(options, cb);
 });
 ```
 
