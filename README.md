@@ -1,6 +1,6 @@
-# Gulp Stubby
+# Gulp Stubby Server
 
-[![Build Status](https://travis-ci.org/felixzapata/gulp-stubby.png)](https://travis-ci.org/felixzapata/gulp-stubby)
+[![Build Status](https://travis-ci.org/felixzapata/gulp-stubby-server.png)](https://travis-ci.org/felixzapata/gulp-stubby-server)
 
 > A Gulp plugin for setting up a [Stubby](https://github.com/mrak/stubby4node) mock server based on YAML/JSON/JS configuration files.
 
@@ -148,7 +148,7 @@ Lint and test your code using [Gulp](http://gulpjs.com/).
 
 Clone the repository
 ```shell
-$ git clone https://github.com/felixzapata/gulp-stubby.git && cd gulp-stubby
+$ git clone https://github.com/felixzapata/gulp-stubby-server.git && cd gulp-stubby
 ```
 
 Install dependencies
