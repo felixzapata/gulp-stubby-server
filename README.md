@@ -148,7 +148,7 @@ Lint and test your code using [Gulp](http://gulpjs.com/).
 
 Clone the repository
 ```shell
-$ git clone https://github.com/felixzapata/gulp-stubby-server.git && cd gulp-stubby
+$ git clone https://github.com/felixzapata/gulp-stubby-server.git && cd gulp-stubby-server
 ```
 
 Install dependencies
