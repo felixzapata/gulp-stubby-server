@@ -9,7 +9,7 @@ Inspired by [Grunt Stubby](https://github.com/h2non/grunt-stubby).
 ## Getting Started
 
 ```shell
-npm install gulp-stubby --save-dev
+npm install gulp-stubby-server --save-dev
 ```
 
 ## The "stubby" task

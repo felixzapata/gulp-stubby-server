@@ -1,6 +1,6 @@
 /*
- * gult-stubby
- * https://github.com/felixzapata/gulp-stubby
+ * gult-stubby-server
+ * https://github.com/felixzapata/gulp-stubby-server
  *
  * Copyright (c) 2014 Félix Zapata
  * Licensed under the MIT license.
@@ -15,7 +15,7 @@ var _ = require('lodash'),
     Stubby = require('stubby').Stubby,
     path = require('path'),
     YAML = require('js-yaml'),
-    PLUGIN_NAME = 'gulp-stubby';
+    PLUGIN_NAME = 'gulp-stubby-server';
 
 
 // defines the absolute path for external static request/response

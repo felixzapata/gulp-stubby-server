@@ -1,6 +1,6 @@
 /*
- * gulp-stubby
- * https://github.com/felixzapata/gulp-stubby
+ * gulp-stubby-server
+ * https://github.com/felixzapata/gulp-stubby-server
  *
  * Copyright (c) 2014 Felix Zapata
  * Licensed under the MIT license.

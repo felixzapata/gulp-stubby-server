@@ -1,11 +1,11 @@
 {
-  "name": "gulp-stubby",
+  "name": "gulp-stubby-server",
   "version": "0.0.1",
   "description": "A Gulp plugin for setting up a Stubby mock server based on YAML/JSON/JS configuration files",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/felixzapata/gulp-stubby"
+    "url": "https://github.com/felixzapata/gulp-stubby-server"
   },
   "keywords": [
     "gulpplugin",
@@ -24,9 +24,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/felixzapata/gulp-stubby/issues"
+    "url": "https://github.com/felixzapata/gulp-stubby-server/issues"
   },
-  "homepage": "https://github.com/felixzapata/gulp-stubby",
+  "homepage": "https://github.com/felixzapata/gulp-stubby-server",
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.0",
