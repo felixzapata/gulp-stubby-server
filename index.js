@@ -167,7 +167,7 @@ function stubbyPlugin(customOptions, cb) {
         stubbyServer.start(_.omit(options, 'callback', 'relativeFilesPath', 'persistent'), function (error) {
             if (error) {
                 gutil.log(gutil.colors.red('Stubby error: "' + error));
-                cb();
+                return cb();
             }
             if (_.isFunction(options.callback)) {
                 options.callback(stubbyServer, options);
