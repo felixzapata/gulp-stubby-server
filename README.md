@@ -162,6 +162,10 @@ $ npm test
 ```
 
 ## Release History
+* `0.1.2` 05.12.2014
+  - Fix(index.js): on stubby error, calling the callback should be the last action
+  - Fix(package.json): gulp-util must be as a dependency
+
 * `0.1.1` 27.11.2014
   - Changes repository name
 * `0.1.0` 27.11.2014
