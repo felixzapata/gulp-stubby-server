@@ -168,6 +168,7 @@ $ npm test
 
 * `0.1.1` 27.11.2014
   - Changes repository name
+  
 * `0.1.0` 27.11.2014
   - Initial release
 
