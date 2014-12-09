@@ -162,6 +162,9 @@ $ npm test
 ```
 
 ## Release History
+* `0.1.3` 09.12.2014
+  - Fix(package.json): glob should be a dependency instead of devDependency
+
 * `0.1.2` 05.12.2014
   - Fix(index.js): on stubby error, calling the callback should be the last action
   - Fix(package.json): gulp-util must be as a dependency
