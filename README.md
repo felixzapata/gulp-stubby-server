@@ -33,7 +33,7 @@ gulp.task('stubby', function(cb) {
 
 ```js
 gulp.task('stubby', function() {
-    var options: {
+    var options = {
         callback: function (server, options) {
           server.get(1, function (err, endpoint) {
             if (!err)
@@ -46,7 +46,7 @@ gulp.task('stubby', function() {
         files: [
             'mocks/*.{json,yaml,js}'
         ]
-      },
+    };
     stubby(options, cb);
 });
 ```
