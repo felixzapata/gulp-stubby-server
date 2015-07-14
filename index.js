@@ -186,8 +186,8 @@ function stubbyPlugin(customOptions, cb) {
 
     return {
         stop: function() {
-            gutil.log(gutil.colors.green('Stubby server stopped'));
             stubbyServer.stop();
+            gutil.log(gutil.colors.green('Stubby server stopped'));
         }
     }
 
