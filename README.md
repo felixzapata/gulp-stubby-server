@@ -171,6 +171,9 @@ $ npm test
 ```
 
 ## Release History
+* `0.1.4` 16.07.2015
+  - It adds a method to allows you to programmatically shutdown the stubby server.
+
 * `0.1.3` 09.12.2014
   - Fix(package.json): glob should be a dependency instead of devDependency
 
