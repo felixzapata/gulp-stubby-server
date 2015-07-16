@@ -24,7 +24,7 @@ gulp.task('stubby', function(cb) {
         files: [
             'mocks/*.{json,yaml,js}'
         ]
-    }; 
+    };
     stubby(options, cb);
 });
 ```
@@ -137,6 +137,15 @@ Default value: `false`
 
 Run the task in a persistent keep-alive server mode. Other tasks not will run until the Stubby server stops
 
+## API
+
+#### stop
+Allows you to programmatically shutdown the stubby server.
+
+```
+stubbyServer.stop();
+```
+
 ## Contributing
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
@@ -171,7 +180,7 @@ $ npm test
 
 * `0.1.1` 27.11.2014
   - Changes repository name
-  
+
 * `0.1.0` 27.11.2014
   - Initial release
 

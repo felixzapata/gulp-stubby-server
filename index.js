@@ -184,6 +184,13 @@ function stubbyPlugin(customOptions, cb) {
         });
     }
 
+    return {
+        stop: function() {
+            stubbyServer.stop();
+            gutil.log(gutil.colors.green('Stubby server stopped'));
+        }
+    }
+
 }
 
 module.exports = stubbyPlugin;
