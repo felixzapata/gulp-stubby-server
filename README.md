@@ -171,6 +171,11 @@ $ npm test
 ```
 
 ## Release History
+* `0.1.5` 26.08.2015
+  - Add YML files
+  - Update package versions
+  - Move gulp and gulp-util to dependencies
+
 * `0.1.4` 16.07.2015
   - It adds a method to allows you to programmatically shutdown the stubby server.
 
