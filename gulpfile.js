@@ -14,19 +14,19 @@ var gulp = require('gulp'),
     nodeunit = require('gulp-nodeunit');
 
 
-gulp.task('jshint', function () {
+gulp.task('jshint', function() {
     var options = {
         jshintrc: '.jshintrc'
     };
     return gulp.src([
-        'gulpfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>'
-    ])
+            'gulpfile.js',
+            'tasks/*.js',
+            '<%= nodeunit.tests %>'
+        ])
         .pipe(jshint(options));
 });
 
-gulp.task('stubby', function (cb) {
+gulp.task('stubby', function(cb) {
     var options = {
         stubs: 8000,
         tls: 8443,
@@ -40,9 +40,9 @@ gulp.task('stubby', function (cb) {
 });
 
 
-gulp.task('nodeunit', ['stubby'], function () {
-    return gulp.src('test/test.js').pipe(nodeunit()).on('end', function () {
-        process.nextTick(function () {
+gulp.task('nodeunit', ['stubby'], function() {
+    return gulp.src('test/test.js').pipe(nodeunit()).on('end', function() {
+        process.nextTick(function() {
             process.exit(0);
         });
     });
