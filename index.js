@@ -137,9 +137,9 @@ function stubbyPlugin(customOptions, cb) {
             var data;
             filepath = getAbsolutePath(filepath);
             // Read file source.
-            if (/.yaml$/g.test(filepath)) {
+            if (/\.ya?ml$/g.test(filepath)) {
                 data = readYAML(filepath, options);
-            } else if (/.js$/g.test(filepath)) {
+            } else if (/\.js$/g.test(filepath)) {
                 try {
                     data = require(filepath);
                 } catch (e) {
