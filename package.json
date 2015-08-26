@@ -28,13 +28,13 @@
   },
   "homepage": "https://github.com/felixzapata/gulp-stubby-server",
   "devDependencies": {
-    "gulp": "^3.9.0",
     "gulp-jshint": "^1.11.2",
     "gulp-nodeunit": "0.0.5",
-    "gulp-util": "^3.0.6",
     "supertest": "~0.7.1"
   },
   "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.6",
     "event-stream": "^3.1.7",
     "glob": "~4.1.5",
     "js-yaml": "~3.2.2",
