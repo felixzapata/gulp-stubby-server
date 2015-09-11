@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/felixzapata/gulp-stubby-server.png)](https://travis-ci.org/felixzapata/gulp-stubby-server)
 
+[![Package Quality](http://npm.packagequality.com/badge/gulp-stubby-server.png)](http://packagequality.com/#?package=gulp-stubby-server)
+
 > A Gulp plugin for setting up a [Stubby](https://github.com/mrak/stubby4node) mock server based on YAML/JSON/JS configuration files.
 
 Inspired by [Grunt Stubby](https://github.com/h2non/grunt-stubby).
