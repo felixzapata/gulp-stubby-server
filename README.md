@@ -173,6 +173,9 @@ $ npm test
 ```
 
 ## Release History
+* `0.1.6` 03.02.2016
+  - Update glob package
+
 * `0.1.5` 26.08.2015
   - Add YML files
   - Update package versions
