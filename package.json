@@ -33,10 +33,10 @@
     "supertest": "~0.7.1"
   },
   "dependencies": {
+    "event-stream": "^3.1.7",
+    "glob-all": "^3.0.3",
     "gulp": "^3.9.0",
     "gulp-util": "^3.0.6",
-    "event-stream": "^3.1.7",
-    "glob": "~6.0.4",
     "js-yaml": "~3.2.2",
     "lodash": "^3.10.1",
     "stubby": "~0.2.0",

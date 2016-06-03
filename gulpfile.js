@@ -33,6 +33,11 @@ gulp.task('stubby', function(cb) {
         admin: 8001,
         persistent: false,
         files: [
+            'test/fixtures/cities.yml',
+            'test/fixtures/localities.yaml',
+            'test/fixtures/places.json',
+            'test/fixtures/towns.js',
+            'test/fixtures/users.json',
             'test/fixtures/*.{json,yaml,yml,js}'
         ]
     };

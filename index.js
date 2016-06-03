@@ -10,7 +10,7 @@
 
 var _ = require('lodash'),
     fs = require('fs'),
-    glob = require('glob'),
+    glob = require('glob-all'),
     gutil = require('gulp-util'),
     Stubby = require('stubby').Stubby,
     path = require('path'),
@@ -124,7 +124,7 @@ function stubbyPlugin(customOptions, cb) {
 
 
     if (options.files) {
-        files = glob.sync(_.first(options.files));
+        files = glob.sync(options.files);
         // Iterate over all specified file groups.
         data = _.union.apply(_, files.filter(function(filepath) {
             // Warn on and remove invalid source files (if nonull was set).
