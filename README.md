@@ -46,7 +46,10 @@ gulp.task('stubby', function() {
         tls: 8443,
         admin: 8010,
         files: [
-            'mocks/*.{json,yaml,js}'
+            'mocks/foobar.json',
+            'mocks/another-foobar-file.yaml',
+            'mocks/foobar.yml',
+            'mocks/another-foobar-file.js'
         ]
     };
     stubby(options, cb);
@@ -54,6 +57,12 @@ gulp.task('stubby', function() {
 ```
 
 ### Options
+
+#### options.files
+Type: `Array`
+Default: null
+
+Config files to run the server. It can accept a list of files or a glob pattern.
 
 #### options.stubs
 Type: `Number`
