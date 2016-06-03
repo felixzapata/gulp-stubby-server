@@ -20,13 +20,13 @@ gulp.task('jshint', function() {
     };
     return gulp.src([
             'gulpfile.js',
-            'tasks/*.js',
-            '<%= nodeunit.tests %>'
+            'index.js',
+            'test/test.js'
         ])
         .pipe(jshint(options));
 });
 
-gulp.task('stubby', function(cb) {
+gulp.task('stubby', ['jshint'], function(cb) {
     var options = {
         stubs: 8000,
         tls: 8443,
