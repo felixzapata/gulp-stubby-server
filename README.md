@@ -182,6 +182,12 @@ $ npm test
 ```
 
 ## Release History
+* `0.2.0` 04.06.2016
+  - Fix issue [#9](https://github.com/felixzapata/gulp-stubby-server/issues/9)
+  - Update Stubby package to 0.3.1
+  - Update README file
+  - Activate `jshint` task
+
 * `0.1.6` 03.02.2016
   - Update glob package
 
