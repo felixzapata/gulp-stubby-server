@@ -120,7 +120,7 @@ function stubbyPlugin(customOptions, cb) {
         },
         options = customOptions ? _.assign(defaultOptions, customOptions) : defaultOptions,
         stubbyServer = new Stubby(),
-        data, files;
+        data, files = [];
 
 
     if (options.files) {
