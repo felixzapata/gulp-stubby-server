@@ -124,7 +124,10 @@ function stubbyPlugin(customOptions, cb) {
 
 
     if (options.files) {
-        files = glob.sync(options.files);
+        options.files.forEach(function(pattern) {
+            files = files.concat(glob.sync(pattern))
+        })
+        
         // Iterate over all specified file groups.
         data = _.union.apply(_, files.filter(function(filepath) {
             // Warn on and remove invalid source files (if nonull was set).
