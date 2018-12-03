@@ -16,8 +16,9 @@
     "task"
   ],
   "author": {
-    "name": "Félix Zapata",
-    "url": "http://www.linkedin.com/in/felixzapata"
+    "name": "Felix Zapata",
+    "email": "fzberlinches@gmail.com",
+    "url": "https://github.com/felixzapata"
   },
   "scripts": {
     "test": "gulp nodeunit"
