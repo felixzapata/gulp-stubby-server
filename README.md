@@ -182,6 +182,8 @@ $ npm test
 ```
 
 ## Release History
+* `0.2.1` 03.12.2018
+  - Fix event-stream 3.3.6 vulnerability [#13](https://github.com/felixzapata/gulp-stubby-server/pull/13)
 * `0.2.0` 04.06.2016
   - Fix issue [#9](https://github.com/felixzapata/gulp-stubby-server/issues/9)
   - Update Stubby package to 0.3.1
