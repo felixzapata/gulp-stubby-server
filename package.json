@@ -1,6 +1,6 @@
 {
   "name": "gulp-stubby-server",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Gulp plugin for setting up a Stubby mock server based on YAML/JSON/JS configuration files",
   "main": "index.js",
   "repository": {
