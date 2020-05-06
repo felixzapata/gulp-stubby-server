@@ -26,7 +26,7 @@ gulp.task('jshint', function() {
         .pipe(jshint(options));
 });
 
-gulp.task('stubby', ['jshint'], function(cb) {
+gulp.task('stubby', gulp.series('jshint', function (cb) {
     var options = {
         stubs: 8000,
         tls: 8443,
@@ -42,13 +42,13 @@ gulp.task('stubby', ['jshint'], function(cb) {
         ]
     };
     return stubby(options, cb);
-});
+}));
 
 
-gulp.task('nodeunit', ['stubby'], function() {
+gulp.task('nodeunit', gulp.series('stubby', function() {
     return gulp.src('test/test.js').pipe(nodeunit()).on('end', function() {
         process.nextTick(function() {
             process.exit(0);
         });
     });
-});
+}));
