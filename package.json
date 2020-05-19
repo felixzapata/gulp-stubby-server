@@ -34,13 +34,11 @@
     "supertest": "~0.7.1"
   },
   "dependencies": {
-    "event-stream": "3.3.4",
     "glob-all": "^3.0.3",
     "gulp": "^4.0.2",
     "gulp-util": "^3.0.6",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.13",
-    "stubby": "~0.3.1",
-    "vinyl-fs": "^0.3.0"
+    "stubby": "~0.3.1"
   }
 }
