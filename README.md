@@ -182,6 +182,9 @@ $ npm test
 ```
 
 ## Release History
+* `0.3.0` 06.05.2020
+  - Upgrade to gulp 4 [#14](https://github.com/felixzapata/gulp-stubby-server/pull/14)
+  - Upgrade lodash version [#15](https://github.com/felixzapata/gulp-stubby-server/pull/15)
 * `0.2.1` 03.12.2018
   - Fix event-stream 3.3.6 vulnerability [#13](https://github.com/felixzapata/gulp-stubby-server/pull/13)
 * `0.2.0` 04.06.2016
