@@ -66,7 +66,7 @@ function isPathAbsolute() {
 function readYAML(filepath, options) {
     var src = fs.readFileSync(filepath, options),
         result;
-    if (!options.mute) {
+    if (!options.quiet) {
         gutil.log(gutil.colors.yellow('Parsing ' + filepath + '...'));
     }
     try {
@@ -80,7 +80,7 @@ function readYAML(filepath, options) {
 function readJSON(filepath, options) {
     var src = fs.readFileSync(filepath, options),
         result;
-    if (!options.mute) {
+    if (!options.quiet) {
         gutil.log(gutil.colors.yellow('Parsing ' + filepath + '...'));
     }
     try {
@@ -114,7 +114,7 @@ function stubbyPlugin(customOptions, cb) {
             cert: null, // certificate file contents (in PEM format)
             pfx: null, // pfx file contents (mutually exclusive with key/cert options)
             watch: null, // filename to monitor and load as stubby's data when changes occur
-            mute: true, // defaults to true. Pass in false to have console output (if available)
+            quiet: true, // defaults to true. Pass in false to have console output (if available)
             relativeFilesPath: false, // if enabled, obtains the data mock file path relatively to the config file directory
             persistent: false // Run the task in a persistent server mode. Other tasks not will run until the Stubby server stops
         },
