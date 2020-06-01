@@ -184,7 +184,7 @@ $ npm test
 ## Release History
 
 * `0.4.0`
-  - build(deps): Upgrade to stubby 4.1.1 (The mute option has been renamed quiet to be more consistent with other cli tools)
+  - build(deps): Upgrade to stubby 4.1.1. The mute option has been renamed quiet to be more consistent with other cli tools. [#17](https://github.com/felixzapata/gulp-stubby-server/pull/17)
 
 * `0.3.1` 25.05.2020
   - Update dependencies [#16](https://github.com/felixzapata/gulp-stubby-server/pull/16)
