@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/felixzapata/gulp-stubby-server",
   "devDependencies": {
-    "gulp-jshint": "^1.11.2",
+    "gulp-jshint": "^2.1.0",
     "gulp-nodeunit": "0.0.5",
     "supertest": "~0.7.1"
   },
