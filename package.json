@@ -31,7 +31,7 @@
   "devDependencies": {
     "gulp-jshint": "^2.1.0",
     "gulp-nodeunit": "0.0.5",
-    "supertest": "~0.7.1"
+    "supertest": "~6.3.2"
   },
   "dependencies": {
     "glob-all": "^3.0.3",
